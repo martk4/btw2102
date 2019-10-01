@@ -10,4 +10,4 @@ I love to do tricks in an airbag.
 
 ### History
 
-Historybooks, especially about war, ar a big interest to me. *yeah*
+Historybooks, especially about war, are a big interest to me. *yeah*
