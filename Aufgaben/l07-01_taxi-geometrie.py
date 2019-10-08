@@ -22,3 +22,4 @@ print(p)
 sum_p = int(1+(p[0]+ p[1]))
 if sum_p % 69 == 0:
     print(sum_p ,"/", 69 ,"=", sum_p/69 )
+print(sum_p, "is the result.")
