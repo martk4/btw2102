@@ -5,7 +5,8 @@ while dividable == False:
     for i in range(1,18):
         if number % i != 0:
             dividable = False
-    if dividable:
+    if dividable == True:
         break
     number += 1
 print(number)
+ 
