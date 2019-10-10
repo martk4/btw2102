@@ -11,8 +11,8 @@ s= spex.split(" ")
 
 all_c = c+l+s+n
 
-def hallo():
-    print ("hallo diana")
+
+
 def randomizer():
     random_p =random.sample(all_c, 12)
     print("".join(random_p))
