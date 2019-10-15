@@ -121,6 +121,7 @@ def winner():
 
     exit()
 def loser():
+    print("There is only 1 stone left.")
     print(colors.bg.red,"YOU LOST",colors.reset)
     exit()
 def counter():
@@ -134,27 +135,44 @@ def counter():
     game()
 def game():
     global heap_count
-    while True:
-        key = input("Your input:")
-        if key == "q":
-            quitter()        
-        elif key == "1":
-            heap_count -= 1
-            print(f"There are now {heap_count} stones on the heap.")
-            break
-        elif key == "2":
-            heap_count -= 2
-            print(f"There are now {heap_count} stones on the heap.")
-            break
-        elif key == "n":
-            newer()
-        #if heap_count == 1:
-            #winner()
-        else:
-            print("Sorry, I don't understand your input.\nPlease try again.")
-    if heap_count <= 1:
-        winner()
-    ai_player()
+    if heap_count == 2:
+        while True:
+            key = input("Your input:")
+            if key == "q":
+                quitter()        
+            elif key == "1":
+                heap_count -= 1
+                print(f"There are now {heap_count} stones on the heap.")
+                break
+            elif key == "2":
+                print("To win the game you must draw 1 Stone. Try again")
+            elif key == "n":
+                newer()
+            else:
+                 print("Sorry, I don't understand your input.\nPlease try again.")
+        if heap_count <= 1:
+            winner()
+        ai_player()
+    else:    
+        while True:
+            key = input("Your input:")
+            if key == "q":
+                quitter()        
+            elif key == "1":
+                heap_count -= 1
+                print(f"There are now {heap_count} stones on the heap.")
+                break
+            elif key == "2":
+                heap_count -= 2
+                print(f"There are now {heap_count} stones on the heap.")
+                break
+            elif key == "n":
+                newer()
+            else:
+                 print("Sorry, I don't understand your input.\nPlease try again.")
+        if heap_count <= 1:
+            winner()
+        ai_player()
         
 ###############################################################
 #               AI PLAYER                                     #
@@ -173,21 +191,43 @@ def ai_player():
     for c in text:
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(0.2)
+        time.sleep(0.5)
     print("\n")
-    a_choice= [1,2]
-    a= random.choice(a_choice)
     
-    if a == 1 :
+    if heap_count >= 7:
+        a_choice= [1,2]
+        a= random.choice(a_choice)
+        if a == 1 :
+            print(f"AI drew 1 stone.")
+            heap_count -= 1
+            print()
+        if a == 2:
+            print(f"AI drew 2 stones.")
+            heap_count -=2
+            print()
+        if heap_count <= 1:
+            loser()
+        counter()
+    elif heap_count == 2:
         print(f"AI drew 1 stone.")
         heap_count -= 1
-    if a == 2:
-        print(f"AI drew 2 stones.")
-        heap_count -=2
-    print()
-    if heap_count <= 1:
         loser()
-    counter()
+    elif heap_count == 3:
+        print(f"AI drew 2 stones.")
+        heap_count -= 2
+        loser()
+    elif heap_count == 4:
+        print(f"AI drew 1 stone.")
+        heap_count -= 1
+        counter()
+    elif heap_count == 5:
+        print(f"AI drew 1 stones.")
+        heap_count -= 1
+        counter()
+    elif heap_count == 6:
+        print(f"AI drew 1 stones.")
+        heap_count -= 1
+        counter()
 
 
 ###############################################################
