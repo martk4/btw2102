@@ -13,36 +13,15 @@ import random
 class colors:
     reset='\033[0m'
     bold='\033[01m'
-    disable='\033[02m'
-    underline='\033[04m'
-    reverse='\033[07m'
-    strikethrough='\033[09m'
-    invisible='\033[08m'
     class fg:
-        black='\033[30m'
         red='\033[31m'
         green='\033[32m'
-        orange='\033[33m'
         blue='\033[34m'
-        purple='\033[35m'
-        cyan='\033[36m'
-        lightgrey='\033[37m'
-        darkgrey='\033[90m'
-        lightred='\033[91m'
-        lightgreen='\033[92m'
         yellow='\033[93m'
-        lightblue='\033[94m'
-        pink='\033[95m'
-        lightcyan='\033[96m'
     class bg:
-        black='\033[40m'
         red='\033[41m'
         green='\033[42m'
-        orange='\033[43m'
-        blue='\033[44m'
-        purple='\033[45m'
-        cyan='\033[46m'
-        lightgrey='\033[47m'
+
 
 ###############################################################
 #               INTRO                                         #
@@ -95,7 +74,7 @@ def newer():
     for c in text:
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(0.2)
+        time.sleep(0.25)
     heap_count = 20
     print("\n\n\n")
     counter()
@@ -116,6 +95,7 @@ def menu_choice():
 heap_count= 20
 
 def winner():
+    print("There is only 1 stone left.")
     print(colors.bg.green,"YOU WON",colors.reset)
     exit()
 
@@ -127,9 +107,9 @@ def loser():
 def counter():
     global heap_count
     if heap_count == 20:
-        print(f"There is a heap of {heap_count} stones.")
+        print(colors.bold, f"There is a heap of {heap_count} stones.", colors.reset)
     elif heap_count <= 19:
-        print(f"There are {heap_count} stones on the heap.")
+        print(colors.bold,f"There are {heap_count} stones on the heap.",colors.reset)
     print("Would you like to remove 1 or 2 stones?")
     print()
     game()
@@ -142,7 +122,11 @@ def game():
                 quitter()        
             elif key == "1":
                 heap_count -= 1
-                print(f"There are now {heap_count} stones on the heap.")
+                if heap_count <= 1:
+                    winner()
+                else:
+                    print(f"There are now {heap_count} stones on the heap.")
+                    break
                 break
             elif key == "2":
                 print("To win the game you must draw 1 Stone. Try again")
@@ -150,8 +134,6 @@ def game():
                 newer()
             else:
                  print("Sorry, I don't understand your input.\nPlease try again.")
-        if heap_count <= 1:
-            winner()
         ai_player()
     else:    
         while True:
@@ -160,11 +142,19 @@ def game():
                 quitter()        
             elif key == "1":
                 heap_count -= 1
-                print(f"There are now {heap_count} stones on the heap.")
+                if heap_count <= 1:
+                    winner()
+                else:
+                    print(f"There are now {heap_count} stones on the heap.")
+                    break
                 break
             elif key == "2":
                 heap_count -= 2
-                print(f"There are now {heap_count} stones on the heap.")
+                if heap_count <= 1:
+                    winner()
+                else:
+                    print(f"There are now {heap_count} stones on the heap.")
+                    break
                 break
             elif key == "n":
                 newer()
@@ -175,61 +165,56 @@ def game():
         ai_player()
         
 ###############################################################
-#               AI PLAYER                                     #
+#               COMPUTER PLAYER                               #
 ###############################################################
-
-def choose_player():
-    print("Please choose your opponent")
-    print(colors.fg.yellow, "\t1 : Goofy the Goof",colors.reset)
-    print(colors.fg.purple, "\t2 : Sherlock Holmes",colors.reset)
 
 def ai_player():
     global heap_count 
     print()
-    print("AI calculates next move", end = "    ")
+    print("Computer calculates next move", end = "    ")
     text= ". . ."
     for c in text:
         sys.stdout.write(c)
         sys.stdout.flush()
-        time.sleep(0.5)
+        time.sleep(0.25)
     print("\n")
     
     if heap_count >= 7:
         a_choice= [1,2]
         a= random.choice(a_choice)
         if a == 1 :
-            print(f"AI drew 1 stone.")
+            print(f"Computer drew 1 stone.")
             heap_count -= 1
             print()
         if a == 2:
-            print(f"AI drew 2 stones.")
+            print(f"Computer drew 2 stones.")
             heap_count -=2
             print()
         if heap_count <= 1:
             loser()
         counter()
     elif heap_count == 2:
-        print(f"AI drew 1 stone.")
+        print(f"Computer drew 1 stone.")
         heap_count -= 1
         loser()
     elif heap_count == 3:
-        print(f"AI drew 2 stones.")
+        print(f"Computer drew 2 stones.")
         heap_count -= 2
         loser()
     elif heap_count == 4:
-        print(f"AI drew 1 stone.")
+        print(f"Computer drew 1 stone.")
         heap_count -= 1
         counter()
     elif heap_count == 5:
-        print(f"AI drew 1 stones.")
+        print(f"Computer drew 1 stones.")
         heap_count -= 1
         counter()
     elif heap_count == 6:
-        print(f"AI drew 1 stones.")
+        print(f"Computer drew 1 stones.")
         heap_count -= 1
         counter()
 
-
+ 
 ###############################################################
 #               RUN IT                                        #
 ###############################################################
