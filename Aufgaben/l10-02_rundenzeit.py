@@ -26,3 +26,32 @@ participants = [
 #theo quickest lap 72
 #alex quickest lap 71
 #Sum of fastets laps: 143
+for i in participants:
+    i["fastest"]= min(i["times"])
+    i["slowest"]= max(i["times"])
+print(participants)
+
+fastest_round=[]
+for a in participants:
+    fastest_round.append(a["fastest"])
+quali = int(max(fastest_round))*1.2
+
+disqualified= []
+for i in participants:
+    if i["slowest"]> quali:
+        disqualified.append(i["name"])
+
+for i in participants:
+    print(i["name"]+ "\tFastest Lap:",end=" " )
+    print(i["fastest"],end= " ")
+    if i["name"] in disqualified:
+        print("disqualified")
+    print()
+    
+
+    
+
+
+
+
+
