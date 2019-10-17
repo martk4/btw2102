@@ -33,19 +33,14 @@ for x in range(1,len(listed)):
     numbers.append(listed[x][0])
     continue
 
-
 words.append(listed[0][0])
 for x in range(1,(len(listed)-1)):
     words.append(listed[x][1])
     continue
 
-
-
 ABC = []
 for i in string.ascii_uppercase:
     ABC.append(i)
-
-
 
 for a in range(len(words)):
     g = int(numbers[a])

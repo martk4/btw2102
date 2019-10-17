@@ -40,8 +40,8 @@ ball.color("white")
 ball.shapesize(stretch_wid = 1, stretch_len = 1)
 ball.penup()
 ball.goto(0,0)
-ball.dx = 1.5
-ball.dy = -1.5
+ball.dx = 3
+ball.dy = -3
 
 # Pen
 
