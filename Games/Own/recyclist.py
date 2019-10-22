@@ -14,12 +14,12 @@ g = 0
 g_flask = turtle.Turtle ()
 g_flask.speed(0)
 g_flask.shape("circle")
-g_flask.color("green")
-g_flask.shapesize(stretch_wid = 2, stretch_len = 1)
+g_flask.color("red")
+#g_flask.shapesize(stretch_wid = 2, stretch_len = 1)
 g_flask.penup()
 g_flask.goto(0,500)
 g_flask.dx = 0 
-g_flask.dy = -2
+g_flask.dy = -9.81
 
 # Swipe Function
 
@@ -38,7 +38,7 @@ while True:
 
     # Move the flask
     g_flask.setx(g_flask.xcor() + g_flask.dx)
-    g_flask.sety(g_flask.ycor() + g_flask.dy)
+    g_flask.sety(g_flask.ycor() * g_flask.dy)
 
     # Swipe
     if swiperight_green:
