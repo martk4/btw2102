@@ -1,4 +1,4 @@
-sent = "Yeah, I fucking did it!"
+sent = "yeah dude!"
 
 def border_around_text(sentence,symbol = '+',padding = 1):
     #SETUP#
@@ -39,4 +39,4 @@ def border_around_text(sentence,symbol = '+',padding = 1):
     final= liner+ "\n"+symbol+spaces_start+s.join(final_words)+symbol+"\n"+liner
     return final
 
-print(border_around_text(sent,padding=6))
+print(border_around_text(sent,symbol= "*", padding=6))
