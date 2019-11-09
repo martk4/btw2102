@@ -15,7 +15,7 @@ height_rec = len(words)+2
 
 
 def liner():
-    for s in range(length_rec +4):
+    for s in range(length_rec+4):
         print("*", end="")
     print()
 
