@@ -1,34 +1,35 @@
-#Das Ziel dieser Aufgabe ist eine Telefonbuch App zu schreiben. 
-# Wenn die App gestartet wurde, fragt sie nach dem Namen. 
-# Ist der Name bereits im Telefonbuch abgelegt, 
-# so kommuniziert sie das und gibt die entsprechende Nummer aus. 
-# Falls die Nummer noch nicht gespeichert wurde, 
-# fragt die App nach der Nummer und der Benutzer kann diese eingeben.
-
-#Als Beispiel könnte dies so aussehen:
-
-#python3 phonebook.py 
-
-#Phonebook APP!
-#Give me a name: seb
-#I couldn't find seb.
-#Give me the number and I save it: 345
-
-#python3 phonebook.py 
-
-#Phonebook APP!
-#Give me a name: seb
-#I have found seb!
-#The number is: 345
-#Um die Daten persistent zu haben sollst Du mit Dateien und JSON Arbeiten. Der Inhalt der JSON-Datei kann zum Beispiel wie folgt aussehen:
-
-#[
-#    {
-#        "name": "tynx",
-#        "number": "123"
-#    },
-#    {
-#        "name": "seb",
-#        "number": "345"
-#    }
-#]
+import json
+import os
+phonebook = []
+def read_file():
+    global phonebook
+    data = [{"name":"seb","number":732}]
+    if os.path.isfile('Aufgaben/phonebook.json') is False:
+        f = open('Aufgaben/phonebook.json', 'w')
+        phonebook = f.write(json.dumps(data))
+        f.close()
+    f = open('Aufgaben/phonebook.json', 'r')
+    phonebook = json.loads(f.read())
+    f.close()
+def input_p():
+    global phonebook
+    read_file()
+    key = input("Enter name: ->")
+    contact = []
+    for i in range(len(phonebook)):
+        if key == phonebook[i]["name"]:
+            contact.append(phonebook[i])
+    if contact !=[]:
+        printer = "This is "+key+"'s number: " + str(contact[0]["number"])
+        print(printer)
+        exit()
+    else:
+        key2 = input("There is no "+key+"\nEnter number to save "+key+"->")
+        saver = {"name": key, "number": key2}
+        phonebook.append(saver)
+        f = open('Aufgaben/phonebook.json', 'w')
+        f.write(json.dumps(phonebook))
+        f.close()
+        printer = key+"'s number is saved"
+        print(printer)
+input_p()
